@@ -1,9 +1,10 @@
 package application;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
-import javafx.scene.Camera;
-import javafx.scene.ParallelCamera;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -33,23 +34,34 @@ public class GameModel {
 		this.camera = camera;
 	}
 
-	void checkCollisionWithArrow(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
+	boolean checkCollisionWithArrow(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
 			SVGPath map, Rectangle finishLine) {
 
+		KeyCode key = event.getCode();
 		setPathes(map, rectangle, finishLine);
 		if (!p2.getElements().isEmpty()) {
 			mazeWon(gameOverLabel, rectangle);
+			return true;
 		}
+
 		if (!p1.getElements().isEmpty() && lives != 0) {
-			lives -= 1;
+			if (key == KeyCode.W) {
+				rectangle.setY(rectangle.getY() + 12);
+			} else if (key == KeyCode.A) {
+				rectangle.setX(rectangle.getX() + 12);
+			} else if (key == KeyCode.S) {
+				rectangle.setY(rectangle.getY() - 12);
+			} else if (key == KeyCode.D) {
+				rectangle.setX(rectangle.getX() - 12);
+			}
+			lives -= 0.6;
 			lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
-			if (lives < 0) {
+			if (lives <= 0) {
 				gameOverLabel.setVisible(true);
 				rectangle.setVisible(false);
 				lifeLeftLabel.setVisible(false);
 			}
 		}
-		KeyCode key = event.getCode();
 		if (key == KeyCode.W) {
 			rectangle.setY(rectangle.getY() - 4);
 		} else if (key == KeyCode.A) {
@@ -59,6 +71,8 @@ public class GameModel {
 		} else if (key == KeyCode.D) {
 			rectangle.setX(rectangle.getX() + 4);
 		}
+
+		return false;
 	}
 
 	void startMediaPlayer() {
@@ -70,24 +84,28 @@ public class GameModel {
 
 	}
 
+	private void setDisableKeys(KeyCode notDisabled, KeyCode dis1, KeyCode dis2, KeyCode dis3) {
+
+	}
+
 	void camera(Scene scene) {
 
 		scene.setCamera(camera);
 
 	}
 
-	void checkCollisionWithMouse(MouseEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
+	boolean checkCollisionWithMouse(MouseEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
 			SVGPath map, Rectangle finishLine) {
 
 		setPathes(map, rectangle, finishLine);
-
 		lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
 		lifeLeftLabel.requestFocus();
 		if (!p2.getElements().isEmpty()) {
 			mazeWon(gameOverLabel, rectangle);
+			return true;
 		}
 		if (!p1.getElements().isEmpty() && lives != 0) {
-			lives -= 0.4;
+			lives -= 1;
 			lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
 			rectangle.setX(event.getX());
 			rectangle.setY(event.getY());
@@ -102,12 +120,15 @@ public class GameModel {
 			camera.setTranslateX(rectangle.getX() / 2);
 			camera.setTranslateY(rectangle.getY() / 2);
 		}
+		return false;
+
 	}
 
-	private void mazeWon(Label gameOverLabel, Rectangle rectangle) {
-		gameOverLabel.setText("Maze Done!");
+	private boolean mazeWon(Label gameOverLabel, Rectangle rectangle) {
+
 		gameOverLabel.setVisible(true);
 		rectangle.setVisible(false);
+		return true;
 	}
 
 	private void setPathes(SVGPath map, Rectangle rectangle, Rectangle finishLine) {
