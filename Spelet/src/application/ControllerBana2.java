@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 
-public class Controller implements Initializable {
+public class ControllerBana2 implements Initializable {
 
 	@FXML
 	Slider speedSlider;
@@ -34,7 +34,7 @@ public class Controller implements Initializable {
 		root.setOnKeyPressed(keyEvent -> {
 			if (model.checkCollisionWithArrow(keyEvent, lifeLeftLabel, gameOverLabel, rectangle, map,
 					finishLine) == true) {
-				Main.stage.setScene(Main.scene2);
+				Main.stage.setScene(Main.scene3);
 				Main.root.requestFocus();
 				Main.stage.setFullScreen(true);
 			}

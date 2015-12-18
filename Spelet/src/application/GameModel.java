@@ -1,13 +1,9 @@
 package application;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javafx.fxml.FXMLLoader;
 import javafx.scene.PerspectiveCamera;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +20,7 @@ public class GameModel {
 	MediaPlayer mediaPlayer;
 	Path p1, p2;
 	double lives = 200;
+	int currentX, currentY;
 	PerspectiveCamera camera = new PerspectiveCamera(false);
 
 	public PerspectiveCamera getCamera() {
@@ -34,27 +31,37 @@ public class GameModel {
 		this.camera = camera;
 	}
 
+	void speedSlider(Slider speedslider) {
+		speedslider = new Slider(2,12,0.5);
+		speedslider.setShowTickMarks(true);
+		speedslider.setShowTickLabels(true);
+		speedslider.setMajorTickUnit(0.25f);
+		speedslider.setBlockIncrement(0.1f);
+	}
+
 	boolean checkCollisionWithArrow(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
 			SVGPath map, Rectangle finishLine) {
 
 		KeyCode key = event.getCode();
 		setPathes(map, rectangle, finishLine);
+
 		if (!p2.getElements().isEmpty()) {
 			mazeWon(gameOverLabel, rectangle);
 			return true;
 		}
 
 		if (!p1.getElements().isEmpty() && lives != 0) {
-			if (key == KeyCode.W) {
-				rectangle.setY(rectangle.getY() + 12);
-			} else if (key == KeyCode.A) {
-				rectangle.setX(rectangle.getX() + 12);
-			} else if (key == KeyCode.S) {
-				rectangle.setY(rectangle.getY() - 12);
-			} else if (key == KeyCode.D) {
-				rectangle.setX(rectangle.getX() - 12);
+			if (rectangle.getY() < currentY) {
+				setRectangleToCurrentToCurrentPosition(rectangle);
+			} else if (rectangle.getY() > currentY) {
+				setRectangleToCurrentToCurrentPosition(rectangle);
+			} else if (rectangle.getX() < currentX) {
+				setRectangleToCurrentToCurrentPosition(rectangle);
+			} else if (rectangle.getX() > currentX) {
+				setRectangleToCurrentToCurrentPosition(rectangle);
 			}
-			lives -= 0.6;
+
+			lives -= 1;
 			lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
 			if (lives <= 0) {
 				gameOverLabel.setVisible(true);
@@ -62,14 +69,19 @@ public class GameModel {
 				lifeLeftLabel.setVisible(false);
 			}
 		}
+
 		if (key == KeyCode.W) {
-			rectangle.setY(rectangle.getY() - 4);
+			rectangle.setY(rectangle.getY() - 5);
+			currentY = (int) (rectangle.getY() + 6);
 		} else if (key == KeyCode.A) {
-			rectangle.setX(rectangle.getX() - 4);
+			rectangle.setX(rectangle.getX() - 5);
+			currentX = (int) (rectangle.getX() + 6);
 		} else if (key == KeyCode.S) {
-			rectangle.setY(rectangle.getY() + 4);
+			rectangle.setY(rectangle.getY() + 5);
+			currentY = (int) (rectangle.getY() - 6);
 		} else if (key == KeyCode.D) {
-			rectangle.setX(rectangle.getX() + 4);
+			rectangle.setX(rectangle.getX() + 5);
+			currentX = (int) (rectangle.getX() - 6);
 		}
 
 		return false;
@@ -77,20 +89,10 @@ public class GameModel {
 
 	void startMediaPlayer() {
 
-		anventureSong = new Media(new File("src/Music/Adventure.mp3").toURI().toString());
+		anventureSong = new Media(new File("/Music/Adventure.mp3").toURI().toString());
 		mediaPlayer = new MediaPlayer(anventureSong);
 		mediaPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
-
-	}
-
-	private void setDisableKeys(KeyCode notDisabled, KeyCode dis1, KeyCode dis2, KeyCode dis3) {
-
-	}
-
-	void camera(Scene scene) {
-
-		scene.setCamera(camera);
 
 	}
 
@@ -117,18 +119,20 @@ public class GameModel {
 		} else {
 			rectangle.setX(event.getX());
 			rectangle.setY(event.getY());
-			camera.setTranslateX(rectangle.getX() / 2);
-			camera.setTranslateY(rectangle.getY() / 2);
 		}
 		return false;
 
 	}
 
-	private boolean mazeWon(Label gameOverLabel, Rectangle rectangle) {
-
+	private void mazeWon(Label gameOverLabel, Rectangle rectangle) {
+		gameOverLabel.setText("Maze Done");
 		gameOverLabel.setVisible(true);
 		rectangle.setVisible(false);
-		return true;
+	}
+
+	private void setRectangleToCurrentToCurrentPosition(Rectangle rectangle) {
+		rectangle.setY(currentY);
+		rectangle.setX(currentX);
 	}
 
 	private void setPathes(SVGPath map, Rectangle rectangle, Rectangle finishLine) {

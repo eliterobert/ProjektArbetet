@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,39 +11,69 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 
-	private final int SCREEN_WIDTH = 1024;
-	private final int SCREEN_HEIGHT = 768;
+	private final int SCREEN_WIDTH = 1200;
+	private final int SCREEN_HEIGHT = 830;
 	private String mapPath;
+	ArrayList<String> maps = new ArrayList<>();
 	static Stage stage;
-	static Scene theScene;
+	static Scene theScene, scene2, scene3, scen4, scene4,scene5;
 	static Parent root;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
+			GameModel model = new GameModel();
+			
+			Thread mediaThread = new Thread(()-> {
+				model.startMediaPlayer();
+			});
+			mediaThread.start();
 
-			mapPath = "RobertsBana.fxml";
+			mapPath = "Maze1.fxml";
 			URL location = this.getClass().getResource(mapPath);
 			FXMLLoader loader = new FXMLLoader(location);
 			root = loader.load();
-
 			Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
-
 			theScene = scene;
 			theScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage = primaryStage;
 			stage.setScene(theScene);
+			stage.setFullScreen(true);
 			stage.show();
 			root.requestFocus();
 
-			location = this.getClass().getResource("EmmasBana.fxml");
+			location = this.getClass().getResource("Maze2.fxml");
 			loader = new FXMLLoader(location);
 			root = loader.load();
-			theScene = new Scene(root, SCREEN_HEIGHT, SCREEN_HEIGHT);
+			scene2 = new Scene(root, SCREEN_HEIGHT, SCREEN_HEIGHT);
 			stage.setMinWidth(SCREEN_HEIGHT);
 			stage.setMinWidth(SCREEN_WIDTH);
+			root.requestFocus();
 
+			location = this.getClass().getResource("Maze3.fxml");
+			loader = new FXMLLoader(location);
+			root = loader.load();
+			scene3 = new Scene(root, SCREEN_HEIGHT, SCREEN_HEIGHT);
+			stage.setMinWidth(SCREEN_HEIGHT);
+			stage.setMinWidth(SCREEN_WIDTH);
+			root.requestFocus();
 			
+			location = this.getClass().getResource("Maze4.fxml");
+			loader = new FXMLLoader(location);
+			root = loader.load();
+			scene4 = new Scene(root, SCREEN_HEIGHT, SCREEN_HEIGHT);
+			stage.setMinWidth(SCREEN_HEIGHT);
+			stage.setMinWidth(SCREEN_WIDTH);
+			root.requestFocus();
+			
+			location = this.getClass().getResource("Maze5.fxml");
+			loader = new FXMLLoader(location);
+			root = loader.load();
+			scene5 = new Scene(root, SCREEN_HEIGHT, SCREEN_HEIGHT);
+			stage.setMinWidth(SCREEN_HEIGHT);
+			stage.setMinWidth(SCREEN_WIDTH);
+			root.requestFocus();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,20 +84,8 @@ public class Main extends Application {
 		return root;
 	}
 
-	public void setRoot(Parent root) {
-		this.root = root;
-	}
-
 	public static void main(String[] args) {
 		launch(args);
-	}
-
-	public Scene getScene() {
-		return theScene;
-	}
-
-	public void setScene(Scene scene) {
-		this.theScene = scene;
 	}
 
 	public String getMapPath() {
