@@ -1,32 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black; -fx-text-fill: orange;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40">
+<AnchorPane maxHeight="830" maxWidth="1200" minHeight="830" minWidth="1200" prefHeight="830" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartPageController">
    <children>
-      <MenuBar layoutX="14.0" layoutY="14.0" style="-fx-font-size: 25; -fx-font-family: &quot;Segoe Print&quot;;">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <ImageView fitHeight="830.0" fitWidth="1200.0">
+         <image>
+            <Image url="@../Backgrounds/startpageBackground.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="706.0" layoutY="39.0" prefHeight="84.0" prefWidth="287.0" text="MazeGame" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="46.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.38571428571428573" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#29420b" />
+                  <Stop color="#a377a1" offset="0.32302405498281783" />
+                  <Stop color="#a37f77" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#8c9917" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="32.0" layoutY="195.0" prefHeight="84.0" prefWidth="287.0" text="PlayerName:" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField alignment="CENTER" layoutX="32.0" layoutY="254.0" opacity="0.43" prefHeight="38.0" prefWidth="165.0" promptText="NameYourPlayer">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="448.0" layoutY="190.0" prefHeight="84.0" prefWidth="287.0" text="Choose difficulty:" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <RadioButton fx:id="easyDifficulty" layoutX="427.0" layoutY="268.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="165.0" text="Easy (Without Enemys)">
+         <font>
+            <Font name="Segoe Print Bold" size="12.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="difficultToggleGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="hardDifficulty" layoutX="600.0" layoutY="268.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="152.0" text="Hard (With Enemys)" toggleGroup="$difficultToggleGroup">
+         <font>
+            <Font name="Segoe Print Bold" size="12.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="21.0" layoutY="319.0" prefHeight="84.0" prefWidth="287.0" text="Recent Players:" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ComboBox layoutX="21.0" layoutY="378.0" opacity="0.43" prefHeight="30.0" prefWidth="193.0" promptText="Recent Players" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="351.0" prefHeight="84.0" prefWidth="287.0" text="Choose character" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <RadioButton fx:id="easyDifficulty1" layoutX="427.0" layoutY="454.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="165.0" text="Quick (100 HP)">
+         <font>
+            <Font name="Segoe Print Bold" size="12.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="characterGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="hardDifficulty1" layoutX="600.0" layoutY="454.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="152.0" text="Slow (200 HP)" toggleGroup="$characterGroup">
+         <font>
+            <Font name="Segoe Print Bold" size="12.0" />
+         </font>
+      </RadioButton>
+      <Button fx:id="startButton" layoutX="524.0" layoutY="623.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="152.0" text="Start Game" />
    </children>
 </AnchorPane>

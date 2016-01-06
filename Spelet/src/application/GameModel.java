@@ -1,6 +1,8 @@
 package application;
 
 import java.io.File;
+
+import controllers.Controller;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -18,31 +20,24 @@ public class GameModel {
 
 	Media anventureSong;
 	MediaPlayer mediaPlayer;
-	Path p1, p2;
+	Path p1, p2, p3;
 	double lives = 200;
+
+	public double getLives() {
+		return lives;
+	}
+
+	public void setLives(double lives) {
+		this.lives = lives;
+	}
+
 	int currentX, currentY;
-	PerspectiveCamera camera = new PerspectiveCamera(false);
+	Controller cont = new Controller();
 
-	public PerspectiveCamera getCamera() {
-		return camera;
-	}
-
-	public void setCamera(PerspectiveCamera camera) {
-		this.camera = camera;
-	}
-
-	void speedSlider(Slider speedslider) {
-		speedslider = new Slider(2,12,0.5);
-		speedslider.setShowTickMarks(true);
-		speedslider.setShowTickLabels(true);
-		speedslider.setMajorTickUnit(0.25f);
-		speedslider.setBlockIncrement(0.1f);
-	}
-
-	boolean checkCollisionWithArrow(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
-			SVGPath map, Rectangle finishLine) {
-
+	public boolean checkCollisionWithArrow(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel,
+			Rectangle rectangle, SVGPath map, Rectangle finishLine) {
 		KeyCode key = event.getCode();
+
 		setPathes(map, rectangle, finishLine);
 
 		if (!p2.getElements().isEmpty()) {
@@ -70,16 +65,16 @@ public class GameModel {
 			}
 		}
 
-		if (key == KeyCode.W) {
+		if (key == KeyCode.W || key == KeyCode.UP) {
 			rectangle.setY(rectangle.getY() - 5);
 			currentY = (int) (rectangle.getY() + 6);
-		} else if (key == KeyCode.A) {
+		} else if (key == KeyCode.A || key == KeyCode.LEFT) {
 			rectangle.setX(rectangle.getX() - 5);
 			currentX = (int) (rectangle.getX() + 6);
-		} else if (key == KeyCode.S) {
+		} else if (key == KeyCode.S || key == KeyCode.DOWN) {
 			rectangle.setY(rectangle.getY() + 5);
 			currentY = (int) (rectangle.getY() - 6);
-		} else if (key == KeyCode.D) {
+		} else if (key == KeyCode.D || key == KeyCode.RIGHT) {
 			rectangle.setX(rectangle.getX() + 5);
 			currentX = (int) (rectangle.getX() - 6);
 		}
@@ -89,15 +84,26 @@ public class GameModel {
 
 	void startMediaPlayer() {
 
-		anventureSong = new Media(new File("/Music/Adventure.mp3").toURI().toString());
+		anventureSong = new Media(new File("src/Music/Adventure.mp3").toURI().toString());
 		mediaPlayer = new MediaPlayer(anventureSong);
 		mediaPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
 
 	}
 
-	boolean checkCollisionWithMouse(MouseEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle rectangle,
-			SVGPath map, Rectangle finishLine) {
+	public void collisionWithEnemy(Rectangle player, Rectangle enemy, Label gameOverLabel, Label lifeLeftLabel) {
+		p3 = (Path) Shape.intersect(enemy, player);
+		if (!p3.getElements().isEmpty()) {
+			lives = 0;
+			player.setVisible(false);
+			gameOverLabel.setVisible(true);
+			lifeLeftLabel.setText("Dead");
+		}
+
+	}
+
+	public boolean checkCollisionWithMouse(MouseEvent event, Label lifeLeftLabel, Label gameOverLabel,
+			Rectangle rectangle, SVGPath map, Rectangle finishLine) {
 
 		setPathes(map, rectangle, finishLine);
 		lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
@@ -109,8 +115,8 @@ public class GameModel {
 		if (!p1.getElements().isEmpty() && lives != 0) {
 			lives -= 1;
 			lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
-			rectangle.setX(event.getX());
-			rectangle.setY(event.getY());
+			rectangle.setX(event.getX() + 5);
+			rectangle.setY(event.getY() + 5);
 			if (lives < 0) {
 				gameOverLabel.setVisible(true);
 				rectangle.setVisible(false);

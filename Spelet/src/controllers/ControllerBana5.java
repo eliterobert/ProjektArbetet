@@ -1,8 +1,10 @@
-package application;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.GameModel;
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -13,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 
-public class ControllerBana5 implements Initializable {
+public class ControllerBana5 implements Initializable, ControllerInterface {
 
 	@FXML
 	Slider speedSlider;
@@ -45,6 +47,18 @@ public class ControllerBana5 implements Initializable {
 			model.checkCollisionWithMouse(mouseEvent, lifeLeftLabel, gameOverLabel, rectangle, map, finishLine);
 
 		});
+	}
+
+	@Override
+	public void startEnemyMotions() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enemyCollision() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
