@@ -1,1 +1,101 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+ .menu-bar {
+      -fx-background-color:#237a72;
+      /*-fx-border-width:2;*/
+    }
+    
+    .context-menu {
+    -fx-padding: 0.0;
+}
+
+    .menu-bar .label {
+       -fx-text-fill:#ffffff;
+    }
+
+    .menu-bar .label:hover {
+       -fx-text-fill:yellow;
+    }
+
+    .menu-item {
+       -fx-background-color:#237a72;
+       -fx-border-color: #237a72;
+    }
+    
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+
+.text-field {
+	 -fx-background-color: transparent;
+	 -fx-text-fill: white;
+}
+
+.text-field:hover {
+	 -fx-background-color: transparent, rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.1), transparent;
+}
+
+.text-field:armed{
+	 -fx-background-color: transparent, rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.2);
+}
+
+.button {
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0.0%, #1f2429 20.0%, #191d22 100.0%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50.0% 0.0%, radius 100.0%, rgba(114.0,131.0,148.0,0.9), rgba(255.0,255.0,255.0,0.0));
+    -fx-background-radius: 5.0,4.0,3.0,5.0;
+    -fx-background-insets: 0.0,1.0,2.0,0.0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 5.0, 0.0 , 0.0 , 1.0 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 12.0px;
+    -fx-padding: 10.0 20.0 10.0 20.0;
+    
+    
+}
+
+.button:hover{
+    -fx-background-color: transparent, rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.1), transparent;
+}
+
+.button:armed {
+    -fx-background-color: transparent, rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.2);
+}
+
+.combo-box .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.combo-box .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.combo-box .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+
+.combo-box-popup .list-view .list-cell
+{
+ -fx-background-color: transparent, rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.1), rgba(0.0,0.0,0.0,0.2);
+}

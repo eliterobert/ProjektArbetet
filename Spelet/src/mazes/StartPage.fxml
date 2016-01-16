@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="0.0" maxWidth="0.0" prefHeight="0.0" prefWidth="0.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartPageController">
+   <children>
+      <ImageView fitHeight="830.0" fitWidth="1200.0">
+         <image>
+            <Image url="@../Backgrounds/startpageBackground.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameBackgoundLabel" alignment="CENTER" layoutX="217.0" layoutY="204.0" prefHeight="552.0" prefWidth="867.0" rotate="39.3" text="plaeyrname" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="96.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.7904761904761904" endY="0.6428571428571428" startX="0.4095238095238095" startY="0.5476190476190476">
+               <stops>
+                  <Stop color="#ff3e0e" />
+                  <Stop color="#17120e" offset="0.32302405498281783" />
+                  <Stop color="#942a15" offset="0.4964253268554727" />
+                  <Stop color="#1b63d7" offset="0.6957380416321045" />
+                  <Stop color="#ff00a6" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="447.0" layoutY="92.0" prefHeight="84.0" prefWidth="287.0" text="MazeGame" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="46.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.38571428571428573" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#29420b" />
+                  <Stop color="#a377a1" offset="0.32302405498281783" />
+                  <Stop color="#a37f77" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#8c9917" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="58.0" layoutY="286.0" prefHeight="84.0" prefWidth="287.0" text="PlayerName:" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="playerNameTextField" alignment="CENTER" layoutX="64.0" layoutY="346.0" opacity="0.43" prefHeight="38.0" prefWidth="165.0" promptText="NameYourPlayer">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="58.0" layoutY="456.0" prefHeight="84.0" prefWidth="235.0" text="Recent Players:" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ComboBox fx:id="recentPlayerBox" layoutX="65.0" layoutY="525.0" opacity="0.43" prefHeight="30.0" prefWidth="193.0" promptText="Recent Players" />
+      <TextArea fx:id="highScoreArea" layoutX="793.0" layoutY="269.0" prefHeight="292.0" prefWidth="367.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="829.0" layoutY="202.0" prefHeight="84.0" prefWidth="287.0" text="Wall Of Fame" wrapText="true">
+         <font>
+            <Font name="Segoe Script Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.5333333333333333" endY="1.0" startX="0.2380952380952381" startY="0.3571428571428571">
+               <stops>
+                  <Stop color="#40160b" />
+                  <Stop color="#9e4b10" offset="0.32302405498281783" />
+                  <Stop color="#54271e" offset="0.4964253268554727" />
+                  <Stop color="#1c3e75" offset="0.6957380416321047" />
+                  <Stop color="#99186a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Button fx:id="createPlayerButton" layoutX="107.0" layoutY="390.0" mnemonicParsing="false" text="Done" />
+      <Button fx:id="startButton" layoutX="359.0" layoutY="701.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="152.0" text="Start Game" />
+      <Button fx:id="ruleButton" layoutX="515.0" layoutY="701.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="152.0" text="Game Rules" />
+      <Button fx:id="exitButton" layoutX="671.0" layoutY="701.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="152.0" text="Exit" />
+   </children>
+</AnchorPane>

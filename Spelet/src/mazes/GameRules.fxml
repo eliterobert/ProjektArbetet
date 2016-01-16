@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="539.0" prefWidth="221.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameRulesController">
+   <children>
+      <ImageView fitHeight="560.0" fitWidth="267.0" layoutX="-6.0" layoutY="-7.0">
+         <image>
+            <Image url="@../Backgrounds/startpageBackground.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="31.0" prefHeight="62.0" prefWidth="160.0" text="About Game" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="22.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="40.0" prefHeight="45.0" prefWidth="240.0" text="1. Don't hit walls, you lose lives" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font></Label>
+      <Label layoutX="12.0" layoutY="63.0" prefHeight="45.0" prefWidth="231.0" text="2. Hit enemy equals true death" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="32.0" layoutY="277.0" prefHeight="62.0" prefWidth="160.0" text="Controls" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="22.0" />
+         </font></Label>
+      <Label layoutX="19.0" layoutY="339.0" prefHeight="45.0" prefWidth="186.0" text="W / UPP ARROW = Move up" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font></Label>
+      <Label layoutX="17.0" layoutY="362.0" prefHeight="45.0" prefWidth="231.0" text="S / DOWN ARROW = Move Down" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font></Label>
+      <Label layoutX="15.0" layoutY="391.0" prefHeight="45.0" prefWidth="240.0" text="A / LEFT ARROW = Move Left" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font></Label>
+      <Label layoutX="13.0" layoutY="414.0" prefHeight="45.0" prefWidth="240.0" text="D / RIGHT ARROW = Move Right" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font></Label>
+      <Button fx:id="closeButton" layoutX="80.0" layoutY="447.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="95.0" text="Close" />
+      <Label layoutX="15.0" layoutY="183.0" prefHeight="45.0" prefWidth="231.0" text="Create a player by typing in name" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="205.0" prefHeight="45.0" prefWidth="231.0" text="in the textfield/choose from recent" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="228.0" prefHeight="45.0" prefWidth="240.0" text="players and press Done to continu" textFill="#0a1454">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="86.0" prefHeight="45.0" prefWidth="231.0" text="3. When your life goes under 100" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="108.0" prefHeight="45.0" prefWidth="231.0" text="             you are dead.  " textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="15.0" layoutY="131.0" prefHeight="45.0" prefWidth="231.0" text="4. If you reset the level, you only" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+      <Label contentDisplay="CENTER" layoutX="12.0" layoutY="154.0" prefHeight="45.0" prefWidth="231.0" text="               get 150 lives" textFill="#070f4a">
+         <font>
+            <Font name="Segoe Script" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
