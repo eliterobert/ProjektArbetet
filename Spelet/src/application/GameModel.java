@@ -38,7 +38,7 @@ public enum GameModel {
 	 * Boolean that sets while loop to true while player isn't die or reach
 	 * finish line. Sets to false if player dies/quits game.
 	 */
-	public boolean collissionBoolean;
+	public boolean threadLoop;
 
 	/**
 	 * Checks if player hits the wall or not, and if so moves the player back
@@ -59,7 +59,7 @@ public enum GameModel {
 	 *         not.
 	 */
 
-	public boolean checkCollisionWithArrow(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle player,
+	public boolean keyEventHandling(KeyEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle player,
 			SVGPath maze, Rectangle finishLine) {
 
 		KeyCode key = event.getCode();
@@ -150,20 +150,20 @@ public enum GameModel {
 	 *         not.
 	 */
 
-	public boolean checkCollisionWithMouse(MouseEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle player,
+	public boolean mouseEventHandling(MouseEvent event, Label lifeLeftLabel, Label gameOverLabel, Rectangle player,
 			SVGPath maze, Rectangle finishLine) {
 
 		// Denna metod är mer för att kunna kolla igenom banorna mer än att
 		// kunna spela med musen.
 
 		setPathes(maze, player, finishLine);
-		lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
+		lifeLeftLabel.setText("LIFE LEFT: " + Math.round(lives) / 1);
 		lifeLeftLabel.requestFocus();
 		if (!p2.getElements().isEmpty()) {
 			return true;
 		}
 		if (!p1.getElements().isEmpty() && lives != 0) {
-			lifeLeftLabel.setText("LIV KVAR: " + Math.round(lives) / 1);
+			lifeLeftLabel.setText("LIFE LEFT: " + Math.round(lives) / 1);
 			player.setX(event.getX() + 5);
 			player.setY(event.getY() + 5);
 			if (lives < 0) {
@@ -197,7 +197,7 @@ public enum GameModel {
 			String mazeName) {
 
 		quitGame.setOnAction(e -> {
-			collissionBoolean = false;
+			threadLoop = false;
 			Platform.exit();
 		});
 		restartMaze.setOnAction(e -> {
@@ -205,7 +205,7 @@ public enum GameModel {
 			main.loadMaze(mazeName);
 		});
 		startPage.setOnAction(e -> {
-			collissionBoolean = false;
+			threadLoop = false;
 			main.loadStartPage();
 		});
 		rules.setOnAction(e -> {

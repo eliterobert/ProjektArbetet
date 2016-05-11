@@ -43,22 +43,22 @@ public class ControllerMaze4 implements Initializable, ControllerInterface {
 		startUp();
 
 		GameModel.MAZEMODEL.getMain().getStage().setOnCloseRequest(e -> {
-			GameModel.MAZEMODEL.collissionBoolean = false;
+			GameModel.MAZEMODEL.threadLoop = false;
 		});
 
 		root.setOnKeyPressed(keyEvent -> {
 			enemyCollision();
-			if (GameModel.MAZEMODEL.checkCollisionWithArrow(keyEvent, lifeLeftLabel, gameOverLabel, player, map,
+			if (GameModel.MAZEMODEL.keyEventHandling(keyEvent, lifeLeftLabel, gameOverLabel, player, map,
 					finishLine) == true) {
-				GameModel.MAZEMODEL.collissionBoolean = false;
+				GameModel.MAZEMODEL.threadLoop = false;
 				GameModel.MAZEMODEL.getMain().loadMaze("Maze5");
 			}
 
 		});
 		player.setOnMouseDragged(mouseEvent -> {
-			if (GameModel.MAZEMODEL.checkCollisionWithMouse(mouseEvent, lifeLeftLabel, gameOverLabel, player, map,
+			if (GameModel.MAZEMODEL.mouseEventHandling(mouseEvent, lifeLeftLabel, gameOverLabel, player, map,
 					finishLine) == true) {
-				GameModel.MAZEMODEL.collissionBoolean = false;
+				GameModel.MAZEMODEL.threadLoop = false;
 				GameModel.MAZEMODEL.getMain().loadMaze("Maze5");
 			}
 		});
@@ -96,10 +96,10 @@ public class ControllerMaze4 implements Initializable, ControllerInterface {
 
 	@Override
 	public void startUp() {
-		GameModel.MAZEMODEL.collissionBoolean = true;
+		GameModel.MAZEMODEL.threadLoop = true;
 		player.requestFocus();
 		gameOverLabel.setVisible(false);
-		lifeLeftLabel.setText("LIV KVAR: " + Integer.toString((int) GameModel.MAZEMODEL.lives));
+		lifeLeftLabel.setText("LIFE LEFT: " + Integer.toString((int) GameModel.MAZEMODEL.lives));
 		startEnemyMotions();
 		runCollision();
 		GameModel.MAZEMODEL.setUpMenuItems(quitGame, restartMaze, startPage, rules, "Maze4");
@@ -113,15 +113,15 @@ public class ControllerMaze4 implements Initializable, ControllerInterface {
 				|| GameModel.MAZEMODEL.collisionWithEnemy(player, enemy3, gameOverLabel, lifeLeftLabel) == true
 				|| GameModel.MAZEMODEL.collisionWithEnemy(player, enemy4, gameOverLabel, lifeLeftLabel) == true
 				|| GameModel.MAZEMODEL.collisionWithEnemy(player, enemy5, gameOverLabel, lifeLeftLabel) == true) {
-			GameModel.MAZEMODEL.collissionBoolean = false;
+			GameModel.MAZEMODEL.threadLoop = false;
 		} else
-			GameModel.MAZEMODEL.collissionBoolean = true;
+			GameModel.MAZEMODEL.threadLoop = true;
 	}
 
 	@Override
 	public void runCollision() {
 		thread = new Thread(() -> {
-			while (GameModel.MAZEMODEL.collissionBoolean) {
+			while (GameModel.MAZEMODEL.threadLoop) {
 				enemyCollision();
 				try {
 					Thread.sleep(233);

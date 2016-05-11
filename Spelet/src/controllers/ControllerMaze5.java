@@ -45,12 +45,13 @@ public class ControllerMaze5 implements Initializable {
 
 		startUp();
 		GameModel.MAZEMODEL.getMain().getStage().setOnCloseRequest(e -> {
-			GameModel.MAZEMODEL.collissionBoolean = false;
+			GameModel.MAZEMODEL.threadLoop = false;
 		});
 
 		root.setOnKeyPressed(keyEvent -> {
-			if (GameModel.MAZEMODEL.checkCollisionWithArrow(keyEvent, lifeLeftLabel, gameOverLabel, player, map,
+			if (GameModel.MAZEMODEL.keyEventHandling(keyEvent, lifeLeftLabel, gameOverLabel, player, map,
 					finishLine) == true) {
+				GameModel.MAZEMODEL.threadLoop = false;
 				StartPageController.currentPlayer.setPoints((int) GameModel.MAZEMODEL.lives);
 				playerToHighScore();
 				GameModel.MAZEMODEL.getMain().loadStartPage();
@@ -58,9 +59,9 @@ public class ControllerMaze5 implements Initializable {
 		});
 
 		player.setOnMouseDragged(mouseEvent -> {
-			if (GameModel.MAZEMODEL.checkCollisionWithMouse(mouseEvent, lifeLeftLabel, gameOverLabel, player, map,
+			if (GameModel.MAZEMODEL.mouseEventHandling(mouseEvent, lifeLeftLabel, gameOverLabel, player, map,
 					finishLine) == true) {
-				GameModel.MAZEMODEL.collissionBoolean = false;
+				GameModel.MAZEMODEL.threadLoop = false;
 				GameModel.MAZEMODEL.getMain().loadStartPage();
 			}
 		});
@@ -79,11 +80,11 @@ public class ControllerMaze5 implements Initializable {
 	}
 
 	private void startUp() {
-		GameModel.MAZEMODEL.collissionBoolean = true;
+		GameModel.MAZEMODEL.threadLoop = true;
 		GameModel.MAZEMODEL.setUpMenuItems(quitGame, restartMaze, startPage, rules, "Maze5");
 		player.requestFocus();
 		gameOverLabel.setVisible(false);
-		lifeLeftLabel.setText("LIV KVAR: " + Integer.toString((int) GameModel.MAZEMODEL.lives));
+		lifeLeftLabel.setText("LIFE LEFT " + Integer.toString((int) GameModel.MAZEMODEL.lives));
 	}
 
 }

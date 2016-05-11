@@ -91,7 +91,7 @@ public class StartPageModel {
 		}
 	}
 
-	private void loadErrorWindow(Exception e) {
+	protected void loadErrorWindow(Exception e) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Exception Dialog");
 		alert.setHeaderText("An exception occured!");
@@ -113,7 +113,6 @@ public class StartPageModel {
 		expContent.add(textArea, 0, 1);
 		alert.getDialogPane().setExpandableContent(expContent);
 		alert.showAndWait();
-
 	}
 
 }

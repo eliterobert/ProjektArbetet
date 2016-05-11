@@ -35,6 +35,7 @@ public class MazeGame extends Application {
 	private Parent root;
 	private URL location;
 	private FXMLLoader loader;
+	private StartPageModel spm;
 
 	/**
 	 * Loads scene to fxmlloader. sets scene and starts application.
@@ -45,6 +46,7 @@ public class MazeGame extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			spm = new StartPageModel();
 			location = this.getClass().getResource("/mazes/Startpage.fxml");
 			loader = new FXMLLoader(location);
 			root = loader.load();
@@ -56,7 +58,7 @@ public class MazeGame extends Application {
 			stage.show();
 			root.requestFocus();
 		} catch (Exception e) {
-			loadErrorWindow(e);
+			spm.loadErrorWindow(e);
 		}
 	}
 
@@ -80,7 +82,7 @@ public class MazeGame extends Application {
 		try {
 			root = loader.load();
 		} catch (IOException e) {
-			loadErrorWindow(e);
+			spm.loadErrorWindow(e);
 		}
 		Scene rulesScene = new Scene(root, SCREEN_HEIGHT, SCREEN_HEIGHT);
 		rulesStage.setMinWidth(260);
@@ -112,7 +114,7 @@ public class MazeGame extends Application {
 			stage.setFullScreen(true);
 			root.requestFocus();
 		} catch (IOException e) {
-			loadErrorWindow(e);
+			spm.loadErrorWindow(e);
 		}
 	}
 
@@ -125,7 +127,7 @@ public class MazeGame extends Application {
 		try {
 			root = loader.load();
 		} catch (IOException e) {
-			loadErrorWindow(e);
+			spm.loadErrorWindow(e);
 		}
 		startScene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
 		startScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -133,32 +135,6 @@ public class MazeGame extends Application {
 		stage.setFullScreen(false);
 		stage.show();
 		root.requestFocus();
-	}
-
-	private void loadErrorWindow(Exception e) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Exception Dialog");
-		alert.setHeaderText("An exception occured!");
-
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
-		e.printStackTrace(pw);
-		String exceptionText = sw.toString();
-		Label label = new Label("The exception stacktrace was:");
-		TextArea textArea = new TextArea(exceptionText);
-		textArea.setEditable(false);
-		textArea.setWrapText(true);
-		textArea.setMaxWidth(Double.MAX_VALUE);
-		textArea.setMaxHeight(Double.MAX_VALUE);
-		GridPane.setVgrow(textArea, Priority.ALWAYS);
-		GridPane.setHgrow(textArea, Priority.ALWAYS);
-		GridPane expContent = new GridPane();
-		expContent.setMaxWidth(Double.MAX_VALUE);
-		expContent.add(label, 0, 0);
-		expContent.add(textArea, 0, 1);
-		alert.getDialogPane().setExpandableContent(expContent);
-		alert.showAndWait();
-
 	}
 
 	public Stage getStage() {
